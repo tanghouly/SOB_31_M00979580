@@ -67,7 +67,7 @@ def add_piece(game, player, row, column):
     row: 0-index row
     column: 0-index column
     """
-    game[row][column+1] = player
+    game[row][column] = player#removed +1 for coordinates for column
     return game
 
 def check_space_empty(game, row, column):
@@ -77,7 +77,7 @@ def convert_input_to_coordinate(user_input):
     return user_input - 1
 
 def switch_player(player):
-    if player = 1:
+    if player == 1:#added double eqaul
         return 2
     else:
         return 1
@@ -95,15 +95,15 @@ if __name__ == '__main__':
     player = 1
     winner = 0  # the winner is not yet defined
 
-    while winner == 0 and moves_exist(game):
+    while winner == 0 and moves_exist(game):#colon added
         print("Currently player: " + str(player))
         available = False
-        while not available
+        while not available:#colon added
             row = convert_input_to_coordinate(int(input("Which row? (start with 1) ")))
             column = convert_input_to_coordinate(int(input("Which column? (start with 1) ")))
-            available = check_space_empty(game, row)
+            available = check_space_empty(game, row,column)
         game = add_piece(game, player, row, column)
         display_game(game)
         player = switch_player(player)
-#        winner = check_winner(game)
+        winner = check_winner(game)#comment removed so winner operation is active
     display_winner(winner)
